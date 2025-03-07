@@ -1,0 +1,38 @@
+name: Deploy to S3
+
+on:
+  push:
+    branches:
+      - entrega2
+      - entrega3
+  pull_request:
+    branches:
+      - entrega2
+      - entrega3
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install dependencies and build
+      run: |
+        npm install
+        npm run build
+
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: fake
+        aws-secret-access-key: fake
+        bucket: frontend-coolgoat
+        aws-region: us-east-1 
+
+    - name: Sync S3 bucket
+      run: aws s3 sync $GITHUB_WORKSPACE/dist/ s3://frontend-coolgoat --delete
+
+    - name: Invalidate CloudFront cache
+      run: aws cloudfront create-invalidation --distribution-id fake --paths "/*"

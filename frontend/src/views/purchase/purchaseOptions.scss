@@ -1,0 +1,28 @@
+#purchase-options-container {
+    padding: 20px;
+    background-color: #260000;
+    border-radius: 8px;
+  }
+  
+  .purchase-details {
+    margin-bottom: 20px;
+  }
+  
+  .payment-buttons {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  

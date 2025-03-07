@@ -1,0 +1,52 @@
+[
+    {
+        "action_id": 101,
+        "proposal_id": 1,
+        "fixture_id": 501,
+        "league_name": "Premier League",
+        "round": "Round 1",
+        "result": "Team A 3 - 1 Team B",
+        "quantity": 10,
+        "group_id": 2
+    },
+    {
+        "action_id": 102,
+        "proposal_id": 2,
+        "fixture_id": 502,
+        "league_name": "La Liga",
+        "round": "Round 5",
+        "result": "Team C 2 - 2 Team D",
+        "quantity": 5,
+        "group_id": 1
+    },
+    {
+        "action_id": 103,
+        "proposal_id": 3,
+        "fixture_id": 503,
+        "league_name": "Serie A",
+        "round": "Round 3",
+        "result": "Team E 1 - 0 Team F",
+        "quantity": 15,
+        "group_id": 3
+    },
+    {
+        "action_id": 104,
+        "proposal_id": 4,
+        "fixture_id": 504,
+        "league_name": "Bundesliga",
+        "round": "Round 7",
+        "result": "Team G 4 - 2 Team H",
+        "quantity": 20,
+        "group_id": 2
+    },
+    {
+        "action_id": 105,
+        "proposal_id": 5,
+        "fixture_id": 505,
+        "league_name": "Ligue 1",
+        "round": "Round 10",
+        "result": "Team I 0 - 0 Team J",
+        "quantity": 8,
+        "group_id": 1
+    }
+]

@@ -1,0 +1,1 @@
+INSERT INTO user_sessions (id, user_id, token, expires_at) VALUES ($1, $2, $3, NOW() + interval '1 day');

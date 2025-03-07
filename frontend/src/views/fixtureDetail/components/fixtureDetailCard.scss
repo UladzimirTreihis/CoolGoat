@@ -1,0 +1,119 @@
+#fixture-detail-card-container {
+    display: flex;
+    width: 100%;
+
+    .fixture-detail-card {
+        width: 70vw;
+        max-width: 70vw;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 10px;
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .date-and-league-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        p {
+            margin: 0 20px;
+        }
+    }
+
+    .date-group {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .league-group {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .match-details-group {
+        display: flex;
+        align-items: center;
+    }
+
+    .match-details-group h2 {
+        width: 30%;
+    }
+
+    .match-goals-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 40%;
+    }
+
+    .odds-group {
+        display: flex;
+        justify-content: space-between;
+
+        .odds-buttons {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
+
+            .button-row {
+                display: flex;
+                justify-content: space-between;
+                gap: 10px;
+            }
+
+            .split-button {
+                display: flex;
+                justify-content: space-between;
+                width: 32%;
+        
+                .left {
+                    text-align: left;
+                }
+        
+                .right {
+                    text-align: right;
+                }
+            }
+        }
+
+        .odds-buttons .odd {
+            cursor: pointer;
+            padding: 10px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .odds-buttons .odd.pressed {
+            background-color: #007bff;
+            color: white;
+            border: 1px solid #0056b3;
+        }
+    }
+
+    .bonds-group {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        input, button {
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        input {
+            width: 65%;
+            border: 1px solid #ccc;
+        }
+
+        #buy-button {
+            width: 30%;
+        }
+    }
+}

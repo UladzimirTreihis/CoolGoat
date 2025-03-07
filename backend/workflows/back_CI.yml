@@ -1,0 +1,36 @@
+name: Backend CI Pipeline
+
+on:
+  push:
+    branches:
+      - entrega1
+      - entrega3
+  pull_request:
+    branches:
+      - entrega1
+      - entrega3
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # Actualiza a una versión compatible
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Install ESLint dependencies
+        run: npm install eslint @eslint/eslintrc @eslint/js
+
+      - name: Run ESLint
+        run: npx eslint .
+
+      - name: Run tests
+        run: node -e "assert(false)"  # BONUS - Fails the build

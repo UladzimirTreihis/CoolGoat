@@ -1,0 +1,29 @@
+[
+    {
+        "auction_id": "REQ123",
+        "fixture_id": "FIX001",
+        "league_name": "Premier League",
+        "round": "Quarter Finals",
+        "result": "Win",
+        "quantity":20,
+        "group_id":1
+    },
+    {
+        "auction_id": "REQ124",
+        "fixture_id": "FIX002",
+        "league_name": "La Liga",
+        "round": "Semi Finals",
+        "result": "Draw",
+        "quantity":20,
+        "group_id":2
+    },
+    {
+        "auction_id": "REQ125",
+        "fixture_id": "FIX003",
+        "league_name": "Serie A",
+        "round": "Finals",
+        "result": "Lose",
+        "quantity":20,
+        "group_id":3
+    }
+]

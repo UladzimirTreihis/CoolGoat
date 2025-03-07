@@ -1,0 +1,50 @@
+.purchase-completed-container {
+    padding: 2rem;
+    margin-top: 5rem;
+    width: 33%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 0px 8px #b4b4b4;
+    background-color: #fff;
+  }
+  
+  .purchase-completed-title {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .purchase-completed-message {
+    text-align: center;
+    font-size: 1rem;
+    color: #555;
+  }
+  
+  .purchase-completed-link {
+    display: block;
+    background-color: #000;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: 1rem;
+  }
+  
+  .purchase-completed-link:hover {
+    background-color: #333;
+  }
+  
+  .purchase-completed-loading {
+    padding: 2rem;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #666;
+  }
+  

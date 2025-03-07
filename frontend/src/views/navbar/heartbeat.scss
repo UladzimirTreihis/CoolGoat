@@ -1,0 +1,21 @@
+.heartbeat {
+    border-radius: 30px;
+    background-color: darkslateblue;
+}
+
+.heartbeat p {
+    margin: 0;
+    padding: 5px 20px;
+}
+
+.heartbeat.online {
+    background-color: forestgreen;
+}
+
+.heartbeat.offline {
+    background-color: darkred;
+}
+
+.heartbeat.loading {
+    background-color: darkslateblue;
+}

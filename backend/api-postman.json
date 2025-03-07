@@ -1,0 +1,505 @@
+{
+    "info": {
+      "name": "API Documentation",
+      "description": "API Documentation for authentication, bond requests, and fixtures.",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Auth",
+        "item": [
+          {
+            "name": "Signup",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"username\": \"uladzimir\",\n    \"email\": \"test@gmail.com\",\n    \"password\": \"testpassword\"\n}"
+              },
+              "url": {
+                "raw": "http://localhost:3000/auth/signup",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "3000",
+                "path": [
+                  "auth",
+                  "signup"
+                ]
+              }
+            },
+            "response": [
+              {
+                "name": "Success Response",
+                "originalRequest": {
+                  "method": "POST",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "url": "http://localhost:3000/auth/signup"
+                },
+                "status": "OK",
+                "code": 200,
+                "body": "{\n    \"id\": 4,\n    \"username\": \"uladzimir\",\n    \"email\": \"test@gmail.com\"\n}",
+                "header": []
+              }
+            ]
+          },
+          {
+            "name": "Login",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"email\": \"testuser1@example.com\",\n    \"password\": \"password1\"\n}"
+              },
+              "url": {
+                "raw": "http://localhost:3000/auth/login",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "3000",
+                "path": [
+                  "auth",
+                  "login"
+                ]
+              }
+            },
+            "response": [
+              {
+                "name": "Success Response",
+                "originalRequest": {
+                  "method": "POST",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "url": "http://localhost:3000/auth/login"
+                },
+                "status": "OK",
+                "code": 200,
+                "body": "{\n    \"user_id\": 4,\n    \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6WyJ1c2VyIl0sImlhdCI6MTcyNzQwNzIyNiwiZXhwIjoxNzI3NDkzNjI2LCJzdWIiOiI0In0.lb9Cd4ylM5qr77kuw_M6z9vFqkyW6dxy5tRWkI7Yc0U\",\n    \"token_type\": \"Bearer\",\n    \"expires_in\": 86400\n}",
+                "header": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Fixtures",
+        "item": [
+          {
+            "name": "Get All Fixtures",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {insert token here}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:3000/api/fixtures",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "3000",
+                "path": [
+                  "api",
+                  "fixtures"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Get Fixture by ID",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {insert token here}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:3000/api/fixture/:fixture_id",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "3000",
+                "path": [
+                  "api",
+                  "fixture",
+                  ":fixture_id"
+                ]
+              }
+            },
+            "response": [
+              {
+                "name": "Success",
+                "status": "OK",
+                "code": 200,
+                "body": "{\n    \"fixture\": {\n        \"id\": 1208071,\n        \"date\": \"2024-09-30T22:00:00.000Z\",\n        \"timestamp\": 1727722800,\n        \"timezone\": \"UTC\",\n        \"status\": {\n            \"long\": \"Not Started\",\n            \"short\": \"NS\",\n            \"elapsed\": null\n        },\n        \"goals\": {\n            \"home\": null,\n            \"away\": null\n        },\n        \"referee\": \"M. Oliver\",\n        \"remaining_bonds\": 39\n    },\n    \"league\": {\n        \"id\": 1,\n        \"name\": \"Premier League\",\n        \"country\": \"England\",\n        \"logo\": \"https://media.api-sports.io/football/leagues/39.png\",\n        \"flag\": \"https://media.api-sports.io/flags/gb.svg\",\n        \"season\": 2024,\n        \"round\": \"Regular Season - 6\"\n    },\n    \"teams\": {\n        \"home\": {\n            \"id\": 3,\n            \"name\": \"Bournemouth\",\n            \"logo\": \"https://media.api-sports.io/football/teams/35.png\"\n        },\n        \"away\": {\n            \"id\": 4,\n            \"name\": \"Southampton\",\n            \"logo\": \"https://media.api-sports.io/football/teams/41.png\"\n        }\n    },\n    \"odds\": [\n        {\n            \"id\": 2,\n            \"name\": \"Match Winner\",\n            \"values\": [\n                {\n                    \"odd\": \"1.68\",\n                    \"value\": \"Home\"\n                },\n                {\n                    \"odd\": \"4.40\",\n                    \"value\": \"Draw\"\n                },\n                {\n                    \"odd\": \"4.80\",\n                    \"value\": \"Away\"\n                }\n            ]\n        }\n    ]\n}",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ]
+              }
+            ]
+          },          
+          {
+            "name": "Get Upcoming Matches for User",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:3000/api/upcoming-matches/:userId",
+                "host": [
+                  "localhost"
+                ],
+                "port": "3000",
+                "path": [
+                  "api",
+                  "upcoming-matches",
+                  ":userId"
+                ],
+                "variable": [
+                  {
+                    "key": "userId",
+                    "value": "<user_id>"
+                  }
+                ]
+              },
+              "description": "Fetch the upcoming matches for the teams involved in all the bond purchases of the specified user.\n\nReplace `:userId` in the URL with the actual user ID.\n\nResponse:\n- Status: 200 OK\n- Returns an array of matches, grouped by league, where each object contains the league, teams, match date, and odds if available."
+            },
+            "response": [
+              {
+                "name": "Success Response",
+                "status": "OK",
+                "code": 200,
+                "_postman_previewlanguage": "json",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": "[\n  {\n    \"league_name\": \"Premier League\",\n    \"league_country\": \"England\",\n    \"match_date\": \"2024-10-10T12:00:00.000Z\",\n    \"home_team\": \"Manchester United\",\n    \"away_team\": \"Chelsea\",\n    \"odds\": [\n      { \"odd\": \"1.50\", \"value\": \"Home\" },\n      { \"odd\": \"3.00\", \"value\": \"Draw\" },\n      { \"odd\": \"2.75\", \"value\": \"Away\" }\n    ]\n  }\n]"
+              },
+              {
+                "name": "Invalid User ID",
+                "status": "Bad Request",
+                "code": 400,
+                "_postman_previewlanguage": "json",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": "{\n  \"message\": \"Invalid user ID\"\n}"
+              },
+              {
+                "name": "Server Error",
+                "status": "Internal Server Error",
+                "code": 500,
+                "_postman_previewlanguage": "json",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ],
+                "body": "{\n  \"message\": \"Server error\"\n}"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "WebPay",
+        "item": [
+          {
+            "name": "Webpay",
+            "item": [
+              {
+                "name": "Purchase",
+                "request": {
+                  "method": "POST",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json",
+                      "type": "text"
+                    }
+                  ],
+                  "body": {
+                    "mode": "raw",
+                    "raw": "{\n  \"fixture_id\": 1100273,\n  \"group_id\": \"3\",\n  \"league_name\": \"World Cup - Qualification South America\",\n  \"round\": \"Group Stage - 9\",\n  \"date\": \"2024-10-10T23:00:00.000Z\",\n  \"result\": \"Bolivia\",\n  \"quantity\": 1,\n  \"odds_name\": \"Match Winner\",\n  \"wallet\": true\n}",
+                    "options": {
+                      "raw": {
+                        "language": "json"
+                      }
+                    }
+                  },
+                  "url": {
+                    "raw": "http://localhost:3000/api/webpay/purchase",
+                    "protocol": "http",
+                    "host": [
+                      "localhost"
+                    ],
+                    "port": "3000",
+                    "path": [
+                      "api",
+                      "webpay",
+                      "purchase"
+                    ]
+                  }
+                },
+                "response": [
+                  {
+                    "name": "Success Response",
+                    "originalRequest": {
+                      "method": "POST",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json",
+                          "type": "text"
+                        }
+                      ],
+                      "url": "http://localhost:3000/api/webpay/purchase"
+                    },
+                    "status": "OK",
+                    "code": 200,
+                    "body": "{\n    \"token_ws\": \"01abc096dc74e037a521345e4a025b985d6203c4746bcfd3a3c01002083c9959\",\n    \"url\": \"https://webpay3gint.transbank.cl/webpayserver/initTransaction\"\n}",
+                    "header": []
+                  }
+                ]
+              }
+            ]
+          }          
+        ]
+      },
+      {
+        "name": "Bonds",
+        "item": [
+          {
+            "name": "Get All Bonds",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {insert token here}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:3000/api/bonds",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "3000",
+                "path": [
+                  "api",
+                  "bonds"
+                ]
+              }
+            },
+            "response": [
+              {
+                "name": "Success",
+                "status": "OK",
+                "code": 200,
+                "body": "[\n    {\n        \"id\": \"d4e3f8f3-9b23-45df-81a1-1a8e3d8d7db9\",\n        \"fixture_id\": 1208071,\n        \"user_id\": 5,\n        \"group_id\": \"Group A\",\n        \"league_name\": \"Premier League\",\n        \"round\": \"Regular Season - 6\",\n        \"date\": \"2024-09-30T22:00:00.000Z\",\n        \"result\": \"home_win\",\n        \"deposit_token\": \"\",\n        \"datetime\": \"2024-09-28T12:00:00.000Z\",\n        \"quantity\": 5,\n        \"seller\": 0,\n        \"odds_name\": \"Match Winner\",\n        \"odds_values\": [\n            {\n                \"odd\": \"1.68\",\n                \"value\": \"Home\"\n            },\n            {\n                \"odd\": \"4.40\",\n                \"value\": \"Draw\"\n            },\n            {\n                \"odd\": \"4.80\",\n                \"value\": \"Away\"\n            }\n        ],\n        \"status\": \"pending\"\n    },\n    {\n        \"id\": \"b9e2e7b4-2398-40d2-bf4f-d3f7e8eb41c8\",\n        \"fixture_id\": 1208072,\n        \"user_id\": 5,\n        \"group_id\": \"Group B\",\n        \"league_name\": \"Premier League\",\n        \"round\": \"Regular Season - 7\",\n        \"date\": \"2024-10-01T22:00:00.000Z\",\n        \"result\": \"draw\",\n        \"deposit_token\": \"\",\n        \"datetime\": \"2024-09-29T12:00:00.000Z\",\n        \"quantity\": 3,\n        \"seller\": 0,\n        \"odds_name\": \"Match Winner\",\n        \"odds_values\": [\n            {\n                \"odd\": \"1.50\",\n                \"value\": \"Home\"\n            },\n            {\n                \"odd\": \"4.00\",\n                \"value\": \"Draw\"\n            },\n            {\n                \"odd\": \"6.00\",\n                \"value\": \"Away\"\n            }\n        ],\n        \"status\": \"valid\"\n    }\n]",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  }
+                ]
+              }
+            ]
+          },          
+          {
+            "name": "Get Bond by ID",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {insert token here}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:3000/api/bonds/:id",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "3000",
+                "path": [
+                  "api",
+                  "bonds",
+                  ":id"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Create Bond",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json",
+                  "type": "text"
+                },
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {insert token here}",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n  \"fixture_id\": 1100273,\n  \"group_id\": \"3\",\n  \"league_name\": \"World Cup - Qualification South America\",\n  \"round\": \"Group Stage - 9\",\n  \"date\": \"2024-10-10T23:00:00.000Z\",\n  \"result\": \"Bolivia\",\n  \"quantity\": 3,\n  \"odds_name\": \"Match Winner\",\n  \"wallet\": true\n}"
+              },
+              "url": {
+                "raw": "http://localhost:3000/api/bonds/create",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "3000",
+                "path": [
+                  "api",
+                  "bonds",
+                  "create"
+                ]
+              }
+            },
+            "response": [
+              {
+                "name": "Success Response",
+                "originalRequest": {
+                  "method": "POST",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json",
+                      "type": "text"
+                    }
+                  ],
+                  "url": "http://localhost:3000/api/bonds/create"
+                },
+                "status": "Created",
+                "code": 201,
+                "body": "{\n  \"message\": \"Bond request created successfully\",\n  \"bondRequest\": {\n    \"id\": \"07d5716a-a5a8-4629-a64b-be69073e7086\",\n    \"fixture_id\": 1100273,\n    \"user_id\": 1,\n    \"group_id\": \"3\",\n    \"league_name\": \"World Cup - Qualification South America\",\n    \"round\": \"Group Stage - 9\",\n    \"date\": \"2024-10-10T03:00:00.000Z\",\n    \"result\": \"Bolivia\",\n    \"deposit_token\": \"\",\n    \"datetime\": \"2024-10-22T06:37:40.879Z\",\n    \"quantity\": 3,\n    \"seller\": 0,\n    \"odds_name\": \"Match Winner\",\n    \"odds_values\": [\n      {\n        \"odd\": \"2.85\",\n        \"value\": \"Home\"\n      },\n      {\n        \"odd\": \"3.30\",\n        \"value\": \"Draw\"\n      },\n      {\n        \"odd\": \"2.60\",\n        \"value\": \"Away\"\n      }\n    ],\n    \"status\": \"pending\",\n    \"wallet\": true\n  },\n  \"transaction\": {\n    \"id\": 4,\n    \"user_id\": 1,\n    \"request_id\": \"07d5716a-a5a8-4629-a64b-be69073e7086\",\n    \"type\": \"bond_purchase\",\n    \"amount\": \"3000.00\",\n    \"created_at\": \"2024-10-22T06:37:40.921Z\",\n    \"status\": \"pending\"\n  }\n}",
+                "header": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Wallet",
+        "item": [
+          {
+            "name": "Get Wallet Balance",
+            "request": {
+              "method": "GET",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {insert token here}",
+                  "type": "text"
+                }
+              ],
+              "url": {
+                "raw": "http://localhost:3000/api/wallet",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "3000",
+                "path": [
+                  "api",
+                  "wallet"
+                ]
+              }
+            },
+            "response": []
+          },
+          {
+            "name": "Add Money to Wallet",
+            "request": {
+              "method": "POST",
+              "header": [
+                {
+                  "key": "Authorization",
+                  "value": "Bearer {insert token here}",
+                  "type": "text"
+                }
+              ],
+              "body": {
+                "mode": "raw",
+                "raw": "{\n    \"amount\": 10000\n}"
+              },
+              "url": {
+                "raw": "http://localhost:3000/api/wallet/add",
+                "protocol": "http",
+                "host": [
+                  "localhost"
+                ],
+                "port": "3000",
+                "path": [
+                  "api",
+                  "wallet",
+                  "add"
+                ]
+              }
+            },
+            "response": []
+          }
+        ]
+      }
+    ]
+  }
+  

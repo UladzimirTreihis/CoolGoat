@@ -1,0 +1,19 @@
+#signup-form-container {
+    display: flex;
+    width: 100%;
+
+    .form-card {
+        width: 40vw;
+        max-width: 40vw;
+        margin: auto;
+        padding: 20px;
+        border-radius: 10px;
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+}

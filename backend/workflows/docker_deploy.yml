@@ -1,0 +1,91 @@
+name: Deploy Backend to AWS
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out the repository
+      uses: actions/checkout@v4
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: fake
+        aws-secret-access-key: fake
+        aws-region: us-east-1
+
+    - name: Login to Amazon ECR
+      id: login-ecr-public
+      uses: aws-actions/amazon-ecr-login@v2
+      with:
+        registry-type: public
+        mask-password: true
+
+    - name: Build, tag and push docker image to Amazon ECR
+      env:
+        REGISTRY: ${{ steps.login-ecr-public.outputs.registry }}
+        REGISTRY_ALIAS: s4o9f7q3
+        REPOSITORY: coolgoat/backend
+        IMAGE_TAG: latest
+      run: |
+          docker build --no-cache -t $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG .
+          docker push $REGISTRY/$REGISTRY_ALIAS/$REPOSITORY:$IMAGE_TAG
+
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{always()}}
+    needs: [build]
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: fake
+        aws-secret-access-key: fake
+        aws-region: us-east-1
+
+    - name: Login to Amazon ECR
+      id: login-ecr-public
+      uses: aws-actions/amazon-ecr-login@v2
+      with:
+        registry-type: public
+        mask-password: true 
+
+    - name: Zip artifact to deploy
+      run: |
+        zip -r deployment.zip scripts/ appspec.yml docker-compose.production.yml
+
+    - name: Copy zip to S3
+      run: |
+        aws s3 cp deployment.zip s3://ec2-backend-coolgoat/deployment.zip
+
+    - name: Create CodeDeploy Deployment
+      id: create-deployment-trigger
+      run: |
+        deploymentId=$(aws deploy create-deployment --application-name backend-coolgoat-app \
+        --deployment-group-name backend-coolgoat-group \
+        --region us-east-1 \
+        --s3-location bucket=ec2-backend-coolgoat,key=deployment.zip,bundleType=zip \
+        --file-exists-behavior OVERWRITE \
+        --description "Automatic deployment from githubactions commit ${{github.sha}}" | jq -r '.deploymentId')
+        echo "DeploymentId=$deploymentId" >> $GITHUB_OUTPUT
+
+    - name: Wait for deployment to finish
+      run: |
+        aws deploy wait deployment-successful --deployment-id ${{ steps.create-deployment-trigger.outputs.deploymentId }} --region us-east-1

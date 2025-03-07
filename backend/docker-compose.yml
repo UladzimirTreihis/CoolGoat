@@ -1,0 +1,123 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: ${DATABASE_USER}
+      POSTGRES_PASSWORD: ${DATABASE_PASSWORD}
+      POSTGRES_DB: ${DATABASE_NAME}
+    env_file:
+      - ./.env
+    ports:
+      - "5432:5432"
+    networks:
+      - app-net
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: 'redis:alpine'
+    ports:
+      - '6379:6379'
+    networks:
+      - app-net
+
+  app:
+    build: .
+    depends_on:
+      - db
+    environment:
+      JWT_SECRET: ${JWT_SECRET}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_PORT: ${DATABASE_PORT}
+      MQTT_HOST: ${MQTT_HOST}
+      MQTT_PORT: ${MQTT_PORT}
+      MQTT_USER: ${MQTT_USER}
+      MQTT_PASSWORD: ${MQTT_PASSWORD}
+      MQTT_TOPIC: ${MQTT_TOPIC}
+      MQTT_GROUP_ID: ${MQTT_GROUP_ID}
+      MQTT_API_PORT: ${MQTT_API_PORT}
+    env_file:
+      - ./.env
+    deploy:
+      replicas: 3
+      restart_policy:
+        condition: on-failure
+    command: sh -c "npx knex migrate:latest && node src/server.js"
+    networks:
+      - app-net
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - app-net
+
+  mqtt:
+    build: .
+    environment:
+      JWT_SECRET: ${JWT_SECRET}
+      DATABASE_USER: ${DATABASE_USER}
+      DATABASE_HOST: ${DATABASE_HOST}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      DATABASE_PORT: ${DATABASE_PORT}
+      MQTT_HOST: ${MQTT_HOST}
+      MQTT_PORT: ${MQTT_PORT}
+      MQTT_USER: ${MQTT_USER}
+      MQTT_PASSWORD: ${MQTT_PASSWORD}
+      MQTT_TOPIC: ${MQTT_TOPIC}
+      MQTT_GROUP_ID: ${MQTT_GROUP_ID}
+      MQTT_API_PORT: ${MQTT_API_PORT}
+      RUN_MQTT: "true"
+    env_file:
+      - ./.env
+    depends_on:
+      - db
+    command: node src/services/mqttServer.js
+    ports:
+      - "3002:3002"
+    networks:
+      - app-net
+
+  # Servicio del JobsMaster (maneja la API para crear trabajos)
+  jobs-master:
+    build: .
+    command: node jobs/index.js  # Ejecuta el JobsMaster que maneja las rutas HTTP
+    ports:
+      - "3004:3004"
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    networks:
+      - app-net
+
+  # Servicio de workers (procesa los trabajos en la cola)
+  workers:
+    build: .
+    command: node jobs/worker.js  # Ejecuta los workers que procesan los trabajos
+    depends_on:
+      - redis
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    deploy:
+      replicas: 3
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge
+
+volumes:
+  postgres_data:

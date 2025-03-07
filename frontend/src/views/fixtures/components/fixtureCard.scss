@@ -1,0 +1,40 @@
+#fixture-card-container {
+    display: flex;
+    width: 100%;
+
+    .fixture-card {
+        width: 70vw;
+        max-width: 70vw;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 10px;
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .date-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .date-group p {
+        margin: 0 20px;
+    }
+
+    .match-details-group {
+        display: flex;
+        align-items: center;
+    }
+
+    .match-details-group h2 {
+        width: 30%;
+    }
+
+    .match-goals-group {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        width: 40%;
+    }
+}

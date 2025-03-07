@@ -1,0 +1,65 @@
+#wallet-card-container {
+    display: flex;
+    width: 100%;
+
+    .wallet-card {
+        width: 70vw;
+        max-width: 70vw;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 10px;
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+    }
+
+    .user-details-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .user-details-group p {
+        margin: 0;
+    }
+
+    .user-details-group h2 {
+        margin: 10px auto 10px auto;
+    }
+
+    .user-balance-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        margin: 20px 0;
+    }
+
+    .add-balance-group {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+
+        input, button {
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        input {
+            width: 65%;
+            border: 1px solid #ccc;
+        }
+
+        #add-funds {
+            width: 30%;
+        }
+    }
+
+    .transactions-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        margin: 20px 0;
+    }
+}

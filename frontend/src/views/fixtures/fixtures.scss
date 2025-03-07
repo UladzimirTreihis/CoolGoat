@@ -1,0 +1,49 @@
+#fixtures-container {
+    margin: 0 auto;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 20px 0;
+
+    .content {
+        width: 70%;
+        text-align: center;
+    
+        span {
+            margin: 0 20px;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+    }
+
+    #fixtures-list {
+        min-height: 20%;
+    }
+
+    #fixtures-filters {
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+
+        input {
+            padding: 10px;
+            width: 20%;
+            margin: 0 5px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 12px;
+        }
+
+        button {
+            width: auto;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+    }
+}
+

@@ -1,0 +1,42 @@
+#navbar-container {
+
+    .navbar {
+        position: fixed;
+        opacity: 1;
+        top: 0;
+        left: 0;
+        width: 100%;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .navbar a {
+        color: white;
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+    }
+
+    .navbar a:hover {
+        color: #646cff;
+    }
+
+    .left-side, .right-side {
+        display: flex;
+        align-items: center;
+    }
+
+    .logout-button {
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+    }
+
+    .logout-button:hover {
+        color: #646cff;
+    }
+}

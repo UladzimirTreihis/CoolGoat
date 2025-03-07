@@ -1,0 +1,26 @@
+#transaction-container {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+
+    .content {
+        margin: 20px 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        padding: 20px;
+        border-radius: 10px;
+        opacity: 1;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.35);
+    }
+
+    h6, p {
+        margin: 0;
+    }
+
+    .content div {
+        width: 20%;
+    }
+}
